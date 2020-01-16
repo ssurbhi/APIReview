@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "f64f880f-20af-44e6-961b-2d86ba546c84",
+		"name": "APIReview",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Review POST Call Case1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "37a2274b-87d5-4d71-9252-4f034d69efbe",
+						"exec": [
+							"tests[\"Call  successful for blank value\"] = ((responseCode.code === 200)||(responseCode.code === 201));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"\",\n\t\"rating\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pickle.rick/api/reviews",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review GET call Case1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c469adc2-2e9a-448c-8409-5fce69d99805",
+						"exec": [
+							"tests[\"Verifying response for both blank values\"] = (responseCode.code === 200);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var json1 = jsonData.text.string;",
+							"var json2 = jsonData.text.rating;",
+							"",
+							"tests[\"Validation for blank value of text\"] = (json1 === \"\");",
+							"tests[\"Validation for blank value of rating\"] = (json2 === \"\");",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pickle.rick/partners/api/reviews?text=\"\"&rating=\"\"",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"partners",
+						"api",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "\"\""
+						},
+						{
+							"key": "rating",
+							"value": "\"\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review POST Call Case2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "37a2274b-87d5-4d71-9252-4f034d69efbe",
+						"exec": [
+							"tests[\"Call  successful with only Text value\"] = ((responseCode.code === 200)||(responseCode.code === 201));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n\t\"text\": \"TextOnly\",\n\t\"rating\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pickle.rick/api/reviews",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review GET call Case2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27aee69a-ec10-49b0-bb29-837dfe969103",
+						"exec": [
+							"tests[\"Verifying response for Text Only value in English\"] = (responseCode.code === 200);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var json1 = jsonData.text.string;",
+							"var json2 = jsonData.text.rating;",
+							"var json3 = jsonData.text.language;",
+							"",
+							"tests[\"Validation for TextOnly\"] = (json1 === \"TextOnly\");",
+							"tests[\"Validation for blank value of rating\"] = (json2 === \"\");",
+							"tests[\"Validation of language\"] = (json2 === \"EN\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pickle.rick/partners/api/reviews?text=\"TextOnly\"&rating=\"\"",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"partners",
+						"api",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "\"TextOnly\""
+						},
+						{
+							"key": "rating",
+							"value": "\"\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review POST call Case3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c67c0c47-9be4-4665-83af-b78d5a80ec18",
+						"exec": [
+							"tests[\"Call  successful for only Rating value\"] = ((responseCode.code === 200)||(responseCode.code === 201));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"\",\n\t\"rating\": 4\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pickle.rick/api/reviews",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review GET call Case3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27aee69a-ec10-49b0-bb29-837dfe969103",
+						"exec": [
+							"tests[\"Verifying response for only Rating value in English\"] = (responseCode.code === 200);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var json1 = jsonData.text.string;",
+							"var json2 = jsonData.text.rating;",
+							"var json3 = jsonData.text.language;",
+							"",
+							"tests[\"Validation for TextOnly\"] = (json1 === \"\");",
+							"tests[\"Validation for blank value of rating\"] = (json2 === \"4\");",
+							"tests[\"Validation of language\"] = (json2 === \"EN\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pickle.rick/partners/api/reviews?text=\"\"&rating=4",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"partners",
+						"api",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "\"\""
+						},
+						{
+							"key": "rating",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review POST call Case4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c67c0c47-9be4-4665-83af-b78d5a80ec18",
+						"exec": [
+							"tests[\"Call  successful for blank value\"] = ((responseCode.code === 200)||(responseCode.code === 201));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"1233\",\n\t\"rating\": 123\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pickle.rick/api/reviews",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review GET call Case4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27aee69a-ec10-49b0-bb29-837dfe969103",
+						"exec": [
+							"tests[\"Verifying response for blank value\"] = (responseCode.code === 200);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var json1 = jsonData.text.string;",
+							"var json2 = jsonData.text.rating;",
+							"var json3 = jsonData.text.language;",
+							"",
+							"tests[\"Validation for TextOnly\"] = (json1 === \"\");",
+							"tests[\"Validation for blank value of rating\"] = (json2 === 123);",
+							"tests[\"Validation of language\"] = (json2 === \"EN\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pickle.rick/partners/api/reviews?text=\"\"&rating=123",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"partners",
+						"api",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "\"\""
+						},
+						{
+							"key": "rating",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review POST call Case5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c67c0c47-9be4-4665-83af-b78d5a80ec18",
+						"exec": [
+							"tests[\"Call  successful for both Text and rating values\"] = ((responseCode.code === 200)||(responseCode.code === 201));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"Text\",\n\t\"rating\": 12\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pickle.rick/api/reviews",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review GET call Case5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27aee69a-ec10-49b0-bb29-837dfe969103",
+						"exec": [
+							"tests[\"Verifying response for both Text & Rating values in English\"] = (responseCode.code === 200);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var json1 = jsonData.text.string;",
+							"var json2 = jsonData.text.rating;",
+							"var json3 = jsonData.text.language;",
+							"",
+							"tests[\"Validation for TextOnly\"] = (json1 === \"Text\");",
+							"tests[\"Validation for blank value of rating\"] = (json2 === \"12\");",
+							"tests[\"Validation of language\"] = (json2 === \"EN\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pickle.rick/partners/api/review?text=\"Text\"&rating=\"12\"",
+					"protocol": "https",
+					"host": [
+						"pickle",
+						"rick"
+					],
+					"path": [
+						"partners",
+						"api",
+						"review"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "\"Text\""
+						},
+						{
+							"key": "rating",
+							"value": "\"12\""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
